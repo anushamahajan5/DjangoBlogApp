@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container" style="background: white; padding: 30px; margin-top: 20px; border-radius: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <h1 class="text-center" style="color: #333;">About This Blog</h1>
+    <hr style="border: 1px solid #ddd; margin: 20px 0;">
+    <p style="color: #555; line-height: 1.6; font-size: 1.1rem;">
+        Welcome to our blog! Here, we share engaging stories, insightful articles, and thought-provoking ideas 
+        that cater to a diverse audience. Whether you're here to learn, explore, or simply be inspired, 
+        we hope you find something that resonates with you.
+    </p>
+    <p style="color: #555; line-height: 1.6; font-size: 1.1rem;">
+        Our mission is to create a platform where ideas can flourish and conversations can begin. From technology and 
+        lifestyle to personal growth and beyond, we cover a wide array of topics to keep you informed and entertained.
+    </p>
+    <div style="text-align: center; margin-top: 30px;">
+        <img src="{{ MEDIA_URL }}about.jpg" alt="About Us" style="max-width: 100%; border-radius: 10px;">
+    </div>
+    
+    <p class="text-center" style="color: #777; margin-top: 20px; font-size: 0.9rem;">
+        Thank you for visiting! Feel free to explore and share your thoughts in the comments section.
+    </p>
+</div>
+{% endblock content %}

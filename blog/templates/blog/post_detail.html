@@ -1,0 +1,146 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<article class="media content-section">
+  <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ object.author }}</a>
+      <small class="text-muted">{{ object.date_posted }}</small>
+      {% if object.author == user %}
+      <div>
+        <a class="btn btn-outline-success" href="{% url 'blog-update' object.id %}">Update</a>
+        <a class="btn btn-outline-danger" href="{% url 'blog-delete' object.id %}">Delete</a>
+      </div>
+      {% endif %}
+    </div>
+    <h2><a class="article-title" href="#">{{ object.title }}</a></h2>
+    <p class="article-content">{{ object.content }}</p>
+
+    <!-- Voting Section -->
+    <div class="vote-section">
+      <button class="btn btn-success upvote-btn" data-post-id="{{ object.id }}">
+        👍 Upvote <span class="upvote-count">{{ object.total_upvotes }}</span>
+      </button>
+      <button class="btn btn-danger downvote-btn" data-post-id="{{ object.id }}">
+        👎 Downvote <span class="downvote-count">{{ object.total_downvotes }}</span>
+      </button>
+    </div>
+
+  </div>
+</article>
+<section class="comments">
+  <h3>Comments</h3>
+  <div id="comment-error" class="alert alert-danger d-none"></div>
+  <ul id="comments-list" class="list-group">
+    {% for comment in comments %}
+    <li class="list-group-item">
+      <strong>{{ comment.user.username }}</strong> - 
+      <small class="text-muted">{{ comment.date_posted }}</small><br>
+      {{ comment.content }}
+    </li>
+    {% endfor %}
+  </ul>
+  <h4 class="mt-4">Add a Comment</h4>
+  <form id="commentForm" method="post" action="">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Handle Comment Form Submission with AJAX
+    const commentForm = document.getElementById('commentForm');
+    if (commentForm) {
+      commentForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+
+        fetch(this.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': document.querySelector('[name="csrfmiddlewaretoken"]').value,
+          }
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              const newComment = `
+              <li class="list-group-item">
+                <strong>${data.comment.user}</strong> -
+                <small class="text-muted">${data.comment.date_posted}</small>
+                <p>${data.comment.content}</p>
+              </li>`;
+              document.getElementById('comments-list').insertAdjacentHTML('afterbegin', newComment);
+              commentForm.reset();
+            } else {
+              alert('Error submitting comment: ' + JSON.stringify(data.errors));
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      });
+    } else {
+      console.error('Comment form not found.');
+    }
+
+    // Handle upvote button click
+    const upvoteButtons = document.querySelectorAll('.upvote-btn');
+    upvoteButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const postId = this.getAttribute('data-post-id');
+
+        fetch(`/post/${postId}/upvote/`, {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': document.querySelector('[name="csrfmiddlewaretoken"]').value
+          }
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              this.querySelector('.upvote-count').textContent = data.total_upvotes;
+            } else {
+              alert(data.message);
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+          });
+      });
+    });
+
+    // Handle downvote button click
+    const downvoteButtons = document.querySelectorAll('.downvote-btn');
+    downvoteButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const postId = this.getAttribute('data-post-id');
+
+        fetch(`/post/${postId}/downvote/`, {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': document.querySelector('[name="csrfmiddlewaretoken"]').value
+          }
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              this.querySelector('.downvote-count').textContent = data.total_downvotes;
+            } else {
+              alert('Error downvoting: ' + data.message);
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while downvoting. Please try again.');
+          });
+      });
+    });
+  });
+</script>
+
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="container" style="background: #f9f9f9; padding: 40px; margin-top: 50px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-4" style="color: #333; font-weight: bold;">Frequently Asked Questions (FAQs)</h1>
+            <p class="lead" style="color: #666;">Here are some of the most common questions we get asked. If you don't find what you're looking for, feel free to reach out to us!</p>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="accordion" id="faqAccordion">
+            <!-- FAQ Item 1 -->
+            <div class="card mb-3" style="border: none; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                <div class="card-header" id="headingOne" style="background: #fff; border-radius: 10px;">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="font-size: 1.1rem; color: #edeff1;">
+                            <strong>1. How do I create an account?</strong>
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+                    <div class="card-body" style="font-size: 1rem; color: #555;">
+                        To create an account, click on the "Sign Up" button at the top right corner of the homepage. Fill in the required details, and you'll be good to go!
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="card mb-3" style="border: none; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                <div class="card-header" id="headingTwo" style="background: #fff; border-radius: 10px;">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-size: 1.1rem; color: #f4f6f9;">
+                            <strong>2. How do I write a blog post?</strong>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+                    <div class="card-body" style="font-size: 1rem; color: #555;">
+                        After logging in, go to your profile and click on the "Create Post" button. Write your content in the editor, add tags and categories, and click "Publish" when you're ready.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="card mb-3" style="border: none; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                <div class="card-header" id="headingThree" style="background: #fff; border-radius: 10px;">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="font-size: 1.1rem; color: #e8ebef;">
+                            <strong>3. How can I comment on a post?</strong>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
+                    <div class="card-body" style="font-size: 1rem; color: #555;">
+                        To comment, scroll down to the comments section at the bottom of the post. Enter your comment in the text box and click "Submit". It will be visible after approval.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="card mb-3" style="border: none; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                <div class="card-header" id="headingFour" style="background: #fff; border-radius: 10px;">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="font-size: 1.1rem; color: #eaecee;">
+                            <strong>4. How do I edit or delete my posts?</strong>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#faqAccordion">
+                    <div class="card-body" style="font-size: 1rem; color: #555;">
+                        To edit or delete a post, visit your profile, find the post, and click either "Edit" or "Delete" next to it.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="card mb-3" style="border: none; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                <div class="card-header" id="headingFive" style="background: #fff; border-radius: 10px;">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="font-size: 1.1rem; color: #eef1f4;">
+                            <strong>5. How do I contact support?</strong>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#faqAccordion">
+                    <div class="card-body" style="font-size: 1rem; color: #555;">
+                        For support, visit our "Contact Us" page or email us directly at support@blogsite.com. We'll respond as soon as possible.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
