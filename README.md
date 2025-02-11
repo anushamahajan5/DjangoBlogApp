@@ -58,10 +58,10 @@ python manage.py runserver
 
 ## Folder Structure
 ```bash
-blogsite/
+blog-app/
 │── blog/                # Django app for blogs
 │── blogsite/                # Django app for blogs
-│── Media/               # Media files
+│── media/               # Media files
 │── users/               # Django app for authentication
 │── static/              # CSS, JS, and image files
 │── templates/           # HTML templates
@@ -70,3 +70,10 @@ blogsite/
 │── requirements.txt     # Python dependencies
 │── README.md            # Project documentation
 ```
+## Screenshots
+
+### Register
+![image](https://github.com/user-attachments/assets/52d3d512-0509-49e1-9ca8-9d80b0b46d0b)
+
+
+
