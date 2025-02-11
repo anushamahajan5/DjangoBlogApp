@@ -75,5 +75,11 @@ blog-app/
 ### Register
 ![image](https://github.com/user-attachments/assets/52d3d512-0509-49e1-9ca8-9d80b0b46d0b)
 
+### Blogs
+![image](https://github.com/user-attachments/assets/00170d6a-05df-4cc7-bf84-da0a3b9adf0c)
 
+### Individual blog
+![image](https://github.com/user-attachments/assets/100b4467-10e5-4503-bff6-315828a44bab)
 
+### Profile Updation
+![image](https://github.com/user-attachments/assets/3db1f6a1-b95e-4c12-8dcf-6232b2d324e0)
